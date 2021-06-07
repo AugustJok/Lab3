@@ -7,52 +7,94 @@
 
 <body>
 
-<h1>OTTAWA GROCERIES</h1>
+
 
 <!-- Tab links, each one with an onclick event associated with it -->
-<div class="tab">
-  <button class="tablinks" onclick="openInfo(event, 'Client')">Client</button>
+<div class="tab" style = "position: relative;">
+  <h1>OTTAWA <br/> GROCERIES</h1>
+  <button class="tablinks" onclick="openInfo(event, 'Client')" id="defaultOpen">Client</button>
   <button class="tablinks" onclick="openInfo(event, 'Products')">Products</button>
   <button class="tablinks" onclick="openInfo(event, 'Cart')">Cart</button>
+  <button class="tablinks" onclick="openInfo(event, 'Delivery')">Delivery</button>
 </div>
+
+<div class="vl"></div>
 
 <!-- Tab content -->
 <div id="Client" class="tabcontent">
-  <h3>Client Information</h3>
-	Tell us a bit about you. <br>
-	Choose a Category:
+  <h2>Client Information</h2>
+  <h3>Tell us a bit about you so we can cater to your needs</h3> 
+  <h3>Please check any preferences:</h3>
 	<br>
-	<br>
-	<label>Lactose Intolerant:
+	<h4>Lactose Intolerant:
 		<input name="lactoseIntolerant" type="checkbox" value="lactoseIntolerant" id="lactoseIntolerant" onchange="populateListProductChoices()">
-	</label> 
-	<br>
-	<br>
-	<label>Nut Allergy:
+	</h4> 
+
+	<h4>Nut Allergy:
 		<input name="nutAllergy" type="checkbox" value="nutAllergy" id="nutAllergy" onchange="populateListProductChoices()">
-	</label> 
-	<br>
-	<br>
-	<label>Organic:
+	</h4> 
+	
+	<h4>Organic:
 		<input name="organic" type="checkbox" value="organic" id="organic" onchange="populateListProductChoices()">
-	</label> 
+	</h4> 
+	
+	<h4>None:
+		<input name="none" type="checkbox" value="none" id="none" checked = "true" onchange="populateListProductChoices()">
+	</h4> 
+    
 	
 </div>
 
 <div id="Products" class="tabcontent">
-  <h3>Your targeted products</h3>
-  <p>We preselected products based on your restrictions.</p>
-	 Choose items to buy:
+  <h2>Your targeted products</h2>
+  <h3>We preselected products based on your restrictions.</h3>
+  <h3> Choose items to buy: </h3>
+  <div id="productlist" class="listp">
 	 <div id="displayProduct"></div>
 	 <button id="addCart" type="button" class="block" onclick="selectedItems()">
-		Add selected items to cart.
-	</button>
+		Add selected items to cart
+	 </button>
+	 <button id="addCart" type="button" class="block" onclick="selectedItems(); openInfo(event, 'Cart')">
+		Go directly to cart
+	 </button>
+  </div>
 </div>
 
 <div id="Cart" class="tabcontent">
-  <h3>Cart</h3>
-  <p>Here is your cart.</p>
+  <h2>Cart</h2>
+  <h3>Here is your cart.</h3>
   <div id="displayCart"></div>
+  <div id="productlist" class="listp">
+  <button id="back" type="button" class="block" onclick="openInfo(event, 'Products')">
+	Go back to products
+  </button>
+  <button id="back" type="button" class="block" onclick="openInfo(event, 'Delivery')">
+	Go to delivery options
+  </button>
+  </div>
+</div>
+
+<div id="Delivery" class="tabcontent">
+	<h2>Delivery Options</h2>
+	<h4>Pickup:
+		<input name="deliveropt" type="radio" value="pickup" id="pickup" onchange="deliveryoption('pickup')">
+	</h4> 
+	<h4>Delivery:
+		<input name="deliveropt" type="radio" value="deliver" id="deliver" onchange="deliveryoption('deliver')">
+	</h4>
+	<div id="pickups" hidden="true">
+		<h3>Choose Pickup Time<h3>
+		<input type="time" id="appt" name="appt" min="09:00" max="18:00" required>
+	</div>
+	<div id="deliveries" hidden="true">
+		<h3>Input Delivery Address<h3>
+		<input type="text" id="daddress" name="daddress">
+	</div>
+    <div id="productlist" class="listp">
+	<button id="checkout" type="button" class="block">
+		Checkout
+	</button>
+	</div>
 </div>
 
 <footer>

@@ -4,10 +4,11 @@
 
 var products = [
 	{
-		name: "brocoli",
+		name: "broccoli",
 		lactoseIntolerant: true,
 		nutAllergy: true,
 		organic: true,
+		none: true,
 		price: 1.99
 	},
 	{
@@ -15,6 +16,7 @@ var products = [
 		lactoseIntolerant: true,
 		nutAllergy: true,
 		organic: false,
+		none: true,
 		price: 2.35
 	},
 	{
@@ -22,6 +24,7 @@ var products = [
 		lactoseIntolerant: true,
 		nutAllergy: true,
 		organic: true,
+		none: true,
 		price: 10.00
 	},
 	{
@@ -29,6 +32,7 @@ var products = [
 		lactoseIntolerant: false,
 		nutAllergy: true,
 		organic: false,
+		none: true,
 		price: 4.99
 	},
 	{
@@ -36,6 +40,7 @@ var products = [
 		lactoseIntolerant: true,
 		nutAllergy: false,
 		organic: false,
+		none: true,
 		price: 2.00
 	},
 	{
@@ -43,6 +48,7 @@ var products = [
 		lactoseIntolerant: false,
 		nutAllergy: true,
 		organic: true,
+		none: true,
 		price: 4.00
 	},
 	{
@@ -50,6 +56,7 @@ var products = [
 		lactoseIntolerant: false,
 		nutAllergy: false,
 		organic: false,
+		none: true,
 		price: 5.00
 	},
 	{
@@ -57,6 +64,7 @@ var products = [
 		lactoseIntolerant: true,
 		nutAllergy: true,
 		organic: true,
+		none: true,
 		price: 6.99
 	},
 	{
@@ -64,6 +72,7 @@ var products = [
 		lactoseIntolerant: true,
 		nutAllergy: true,
 		organic: true,
+		none: true,
 		price: 1.99
 	},
 	{
@@ -71,6 +80,7 @@ var products = [
 		lactoseIntolerant: false,
 		nutAllergy: true,
 		organic: false,
+		none: true,
 		price: 5.99
 	}
 ];
@@ -80,14 +90,16 @@ var products = [
 // given restrictions provided, make a reduced list of products
 // prices should be included in this list, as well as a sort based on price
 
-function restrictListProducts(prods, restriction1, restriction2, restriction3) {
+function restrictListProducts(prods, restriction1, restriction2, restriction3, restriction4) {
 	let product_names = [];
 	prods.sort(function(a,b){return a.price - b.price});
+	
 	for (let i=0; i<prods.length; i+=1) {
-		if(!(restriction1 && !prods[i].lactoseIntolerant) && !(restriction2 && !prods[i].nutAllergy) && !(restriction3 && !prods[i].organic)){
-		product_names.push(prods[i].name + ", $" + prods[i].price);
+		if(!(restriction1 && !prods[i].lactoseIntolerant) && !(restriction2 && !prods[i].nutAllergy) && !(restriction3 && !prods[i].organic) && !(restriction4 && !prods[i].none)){
+			product_names.push(prods[i].name + ", $" + prods[i].price);
 		}
 	}
+	
 	return product_names;
 }
 

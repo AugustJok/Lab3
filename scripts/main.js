@@ -1,6 +1,8 @@
 
 // This function is called when any of the tab is clicked
 // It is adapted from https://www.w3schools.com/howto/howto_js_tabs.asp
+document.getElementById("defaultOpen").click();
+populateListProductChoices();
 
 function openInfo(evt, tabName) {
 
@@ -32,12 +34,13 @@ function populateListProductChoices() {
     var s2 = document.getElementById('displayProduct');
 	var s3 = document.getElementById('nutAllergy');
 	var s4 = document.getElementById('organic');
+	var s5 = document.getElementById('none');
 	
 	// s2 represents the <div> in the Products tab, which shows the product list, so we first set it empty
-    s2.innerHTML = "";
+    s2.innerHTML = ""
 		
 	// obtain a reduced list of products based on restrictions
-    var optionArray = restrictListProducts(products, s1.checked, s3.checked, s4.checked);
+    var optionArray = restrictListProducts(products, s1.checked, s3.checked, s4.checked, s5.checked);
 
 	// for each item in the array, create a checkbox element, each containing information such as:
 	// <input type="checkbox" name="product" value="Bread">
@@ -54,7 +57,7 @@ function populateListProductChoices() {
 		s2.appendChild(checkbox);
 		
 		// create a label for the checkbox, and also add in HTML DOM
-		var label = document.createElement('label')
+		var label = document.createElement('label');
 		label.htmlFor = productName;
 		label.appendChild(document.createTextNode(productName));
 		s2.appendChild(label);
@@ -77,8 +80,9 @@ function selectedItems(){
 	c.innerHTML = "";
 	
 	// build list of selected item
-	var para = document.createElement("P");
-	para.innerHTML = "You selected : ";
+	var para = document.createElement("h3");
+	para.innerHTML = "You selected: ";
+	para.appendChild(document.createElement("br"));
 	para.appendChild(document.createElement("br"));
 	for (i = 0; i < ele.length; i++) { 
 		if (ele[i].checked) {
@@ -90,7 +94,22 @@ function selectedItems(){
 		
 	// add paragraph and total price
 	c.appendChild(para);
-	c.appendChild(document.createTextNode("Total Price is " + getTotalPrice(chosenProducts)));
+	var totalp = document.createElement("h3");
+	totalp.innerHTML = "Total Price is: $" + getTotalPrice(chosenProducts);
+	c.appendChild(totalp);
+	
 		
+}
+
+function deliveryoption(d){
+	var pickup = document.getElementById("pickup");
+	var delivery = document.getElementById("deliver");
+	if (d == "pickup"){
+		pickups.hidden = false;
+		deliveries.hidden = true;
+	}else if (d == "deliver"){
+		pickups.hidden = true;
+		deliveries.hidden = false;
+	}
 }
 
